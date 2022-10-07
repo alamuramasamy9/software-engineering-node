@@ -11,12 +11,14 @@ export default class UserDao implements UserDaoI {
     }
     // @ts-ignore
     async createUser(user: User): Promise<void> {
+        // @ts-ignore
         return await UserModel.create(user);
     }
     async deleteUser(uid: string):  Promise<any> {
         return await UserModel.deleteOne({_id: uid});
     }
     async updateUser(uid: string, user: User): Promise<any> {
+        // @ts-ignore
         return await UserModel.updateOne({_id: uid}, {$set: user});
     }
 }
