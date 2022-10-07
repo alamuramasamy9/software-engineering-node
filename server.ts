@@ -9,9 +9,10 @@ import TuitController from "./controllers/TuitController";
 import TuitDao from "./daos/TuitDao";
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://127.0.0.1:27017/tuiter')
+// mongoose.connect('mongodb://127.0.0.1:27017/tuiter')
+mongoose.connect('mongodb+srv://alamu:ramasamy@cluster0.ckorscg.mongodb.net/tuiter?retryWrites=true&w=majority');
 
-const cors = require('cors')
+const cors = require('cors');
 const app = express();
 app.use(cors());
 app.use(express.json());
