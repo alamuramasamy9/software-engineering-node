@@ -2,6 +2,15 @@
  * @file Implements an Express Node HTTP server.
  */
 import express, {Request, Response} from 'express';
+
+import UserController from "./controllers/UserController";
+import UserDao from "./daos/UserDao";
+import TuitController from "./controllers/TuitController";
+import TuitDao from "./daos/TuitDao";
+
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://127.0.0.1:27017/tuiter')
+
 const cors = require('cors')
 const app = express();
 app.use(cors());
@@ -12,6 +21,9 @@ app.get('/', (req: Request, res: Response) =>
 
 app.get('/hello', (req: Request, res: Response) =>
     res.send('Welcome to Foundation of Software Engineering!'));
+
+new UserController(app,new UserDao);
+new TuitController(app,new TuitDao);
 
 /**
  * Start a server listening at port 4000 locally
