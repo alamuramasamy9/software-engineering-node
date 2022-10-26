@@ -1,0 +1,37 @@
+import LikeDaoI from "../interfaces/LikeDao";
+import LikeModel from "../mongoose/LikeModel";
+import Like from "../models/Like";
+
+export default class LikeDao implements LikeDaoI {
+    private static likeDao: LikeDao | null = null;
+
+    public static getInstance = (): LikeDao => {
+        if(LikeDao.likeDao === null) {
+            LikeDao.likeDao = new LikeDao();
+        }
+        return LikeDao.likeDao;
+    }
+    private constructor() {}
+
+    // @ts-ignore
+    findAllUsersThatLikedTuit = async (tid: string): Promise<Like[]> =>
+        LikeModel
+            .find({tuit: tid})
+            .populate("likedBy")
+            .exec();
+
+    // @ts-ignore
+    findAllTuitsLikedByUser = async (uid: string): Promise<Like[]> =>
+        LikeModel
+            .find({likedBy: uid})
+            .populate("tuit")
+            .exec();
+
+    // @ts-ignore
+    userLikesTuit = async (uid: string, tid: string): Promise<any> =>
+        LikeModel.create({tuit: tid, likedBy: uid});
+
+    // @ts-ignore
+    userUnlikesTuit = async (uid: string, tid: string): Promise<any> =>
+        LikeModel.deleteOne({tuit: tid, likedBy: uid});
+}
