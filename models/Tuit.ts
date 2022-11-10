@@ -1,7 +1,14 @@
-import User from "./User";
-
-export default class Tuit {
-    private tuit: string = '';
-    private postedOn: Date = new Date();
-    private postedBy: User | null = null;
-}
+/**
+ * @file Implements Tuit data model
+ */
+ import User from "./User";
+/**
+* @typedef Tuit Represents Tuit
+* @property {ObjectId[]} tuit tuit id  
+* @property {ObjectId[]} postedBy user id 
+*/
+export default interface Tuit {
+    tuit: string,
+    postedBy?: User,
+    postedOn?: Date,
+};

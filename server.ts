@@ -1,46 +1,56 @@
 /**
- * @file Implements an Express Node HTTP server.
+ * @file Implements an Express Node HTTP server. Declares RESTful Web services
+ * enabling CRUD operations on the following resources:
+ * <ul>
+ *     <li>users</li>
+ *     <li>tuits</li>
+ *     <li>likes</li>
+ *     <li>follow<li>
+ *     <li>bookmark<li>
+ *     <li>message<li>
+ * </ul>
+ * 
+ * Connects to a remote MongoDB instance hosted on the Atlas cloud database
+ * service
  */
+
 import express, {Request, Response} from 'express';
-
+import mongoose from "mongoose";
+import dotenv from 'dotenv';
 import UserController from "./controllers/UserController";
-import UserDao from "./daos/UserDao";
 import TuitController from "./controllers/TuitController";
-import TuitDao from "./daos/TuitDao";
-
-
 import LikeController from "./controllers/LikeController";
-import BookMarkController from "./controllers/BookMarkController"
-import FollowController from './controllers/FollowController';
+import FollowController from "./controllers/FollowController";
+import BookmarkController from './controllers/BookmarkController';
 import MessageController from './controllers/MessageController';
 
 
-const mongoose = require('mongoose');
-// mongoose.connect('mongodb://127.0.0.1:27017/tuiter')
-mongoose.connect('mongodb+srv://alamu:ramasamy@cluster0.ckorscg.mongodb.net/tuiter?retryWrites=true&w=majority');
+dotenv.config();
 
-const cors = require('cors');
 const app = express();
-app.use(cors());
-app.use(express.json());
+// connect to the database
+mongoose.connect('mongodb+srv://alamu:ramasamy@cluster0.ckorscg.mongodb.net/tuiter?retryWrites=true&w=majority');
+//mongoose.connect('mongodb+srv://tuiteradmin:'+process.env.DB_PASSWORD +'@cluster0.yj2qt.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'); // connect to the movie-db database
+app.use(express.json())
 
 app.get('/', (req: Request, res: Response) =>
-    res.send('Welcome to Foundation of Software Engineering!!!!'));
+    res.send('Welcome!'));
 
-app.get('/hello', (req: Request, res: Response) =>
-    res.send('Welcome to Foundation of Software Engineering!'));
+app.get('/add/:a/:b', (req: Request, res: Response) =>
+    res.send(req.params.a + req.params.b));
 
-new UserController(app,new UserDao);
-new TuitController(app,new TuitDao);
-
-const likeController = LikeController.getInstance(app);
-const bookmarkController = BookMarkController.getInstance(app);
+// create RESTful Web service API
+const userController = UserController.getInstance(app);
+const tuitController = TuitController.getInstance(app);
+const likesController = LikeController.getInstance(app);
 const followController = FollowController.getInstance(app);
+const bookmarkController = BookmarkController.getInstance(app);
 const messageController = MessageController.getInstance(app);
 
 /**
  * Start a server listening at port 4000 locally
  * but use environment variable PORT on Heroku if available.
  */
+
 const PORT = 4000;
 app.listen(process.env.PORT || PORT);

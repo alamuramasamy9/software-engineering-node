@@ -1,4 +1,7 @@
-export default class Location {
-    public latitude: number = 0.0;
-    public longitude: number = 0.0;
+/**
+ * @file Implements Location interface
+ */
+export default interface Location {
+    latitude: number,
+    longitude: number
 };

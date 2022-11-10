@@ -1,33 +1,42 @@
-import BookMarkDaoI from "../interfaces/BookMarkDao";
-import BookMarkModel from "../mongoose/BookMarkModel";
-import BookMark from "../models/BookMark";
-
-export default class BookMarkDao implements BookMarkDaoI {
-    private static bookmarkDao: BookMarkDao | null = null;
-
-    public static getInstance = (): BookMarkDao => {
-        if(BookMarkDao.bookmarkDao === null) {
-            BookMarkDao.bookmarkDao = new BookMarkDao();
+/**
+ * @file Implements DAO managing data storage of bookmark. Uses mongoose BookmarkModel
+ * to integrate with MongoDB
+ */
+import BookmarkDaoI from "../interfaces/BookmarkDaoI";
+import BookmarkModel from "../mongoose/BookmarkModel";
+import Bookmark from "../models/Bookmark";
+/**
+  * @class BookmarkDao Implements Data Access Object managing data storage
+  * of Bookmark
+  * @property {BookmarkDao} bookmarkDao Private single instance of BookmarkDao
+  */
+export default class BookmarkDao implements BookmarkDaoI {
+    private static bookmarkDao: BookmarkDao | null = null;
+    public static getInstance = (): BookmarkDao => {
+        if(BookmarkDao.bookmarkDao === null) {
+            BookmarkDao.bookmarkDao = new BookmarkDao();
         }
-        return BookMarkDao.bookmarkDao;
+        return BookmarkDao.bookmarkDao;
     }
     private constructor() {}
-
-    findAllUsersThatBookMarkedTuit = async (tid: string): Promise<BookMark[]> =>
-        BookMarkModel
-            .find({bookMarkedTuit: tid})
-            .populate("bookMarkedBy")
+    /**
+      * Retrieves all tuits that are bookmarked by the user
+      * @param {String} uid uid representing the user
+      */
+    findAllTuitsBookmarkedByUser = async (uid: string): Promise<Bookmark[]> =>
+        BookmarkModel.find({bookmarkedBy: uid})
+            .populate("bookmarkedTuit")
             .exec();
-
-    findAllTuitsBookmarkedByUser = async (uid: string): Promise<BookMark[]> =>
-        BookMarkModel
-            .find({bookMarkedBy: uid})
-            .populate("bookMarkedTuit")
-            .exec();
-
-    userBookmarkedTuit = async (uid: string, tid: string): Promise<any> =>
-        BookMarkModel.create({bookMarkedTuit: tid, bookMarkedBy: uid});
-
-    userUnBookMarksTuit = async (uid: string, tid: string): Promise<any> =>
-        BookMarkModel.deleteOne({bookMarkedTuit: tid, bookMarkedBy: uid});
+    /**
+      * @param {String} uid  user id
+       * @param {String} tid  tuit id
+      */
+    userBookmarksTuit = async (uid: string, tid: string): Promise<any> =>
+        BookmarkModel.create({bookmarkedTuit: tid, bookmarkedBy: uid});
+    /**
+      * @param {String} uid user id
+      * @param {String} uid tuit id that needs to deleted
+      */
+    userUnbookmarksTuit = async (uid: string, tid: string): Promise<any> =>
+        BookmarkModel.deleteOne({bookmarkedTuit: tid, bookmarkedBy: uid});
 }
