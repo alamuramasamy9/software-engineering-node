@@ -1,13 +1,14 @@
 /**
- * @file Implements mongoose schema to CRUD
- * documents in the tuit collection
+ * @file CRUD operations using
+ * mongoose schema in the tuit collection
  */
+
 import mongoose, {Schema} from "mongoose";
 import Tuit from "../models/Tuit";
 /**
-* @typedef Tuit Represents Tuit
-* @property {ObjectId[]} tuit tuit id  
-* @property {ObjectId[]} postedBy user id 
+* @typedef Tuit is the tweet
+* @property {ObjectId[]} tuit is the tuit id of tuit
+* @property {ObjectId[]} postedBy is the user id of user posting tuit
 */
 const TuitSchema = new mongoose.Schema<Tuit>({
     tuit: {type: String, required: true},

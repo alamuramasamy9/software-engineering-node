@@ -1,14 +1,14 @@
 /**
- * @file Implements mongoose schema to CRUD
- * documents in the bookmark collection
+ * @file CRUD operations using
+ * mongoose schema in the bookmark collection
  */
 
 import mongoose, {Schema} from "mongoose";
 import Bookmark from "../models/Bookmark";
 /**
-* @typedef Bookmark Represents Bookmark
-* @property {ObjectId[]} bookmarkedTuit Tuid Id  
-* @property {ObjectId[]} bookmarkedBy User Id
+* @typedef Bookmark is the bookmark being placed
+* @property {ObjectId[]} bookmarkedTuit id of tuit is passed
+* @property {ObjectId[]} bookmarkedBy id of user is passed
 */
 
 const BookmarkSchema = new mongoose.Schema<Bookmark>({

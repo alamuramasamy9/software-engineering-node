@@ -1,14 +1,13 @@
 /**
- * @file Implements mongoose schema to CRUD
- * documents in the likes collection
+ * @file CRUD operations using
+ * mongoose schema in the like collection
  */
-
 import mongoose, {Schema} from "mongoose";
 import Like from "../models/Likes";
 /**
-* @typedef Like Represents Like
-* @property {ObjectId[]} tuit Tuid Id  liked
-* @property {ObjectId[]} likedBy User Id who liked the tuit
+* @typedef Like is the like being posted
+* @property {ObjectId[]} tuit tuit id of tuit being liked
+* @property {ObjectId[]} likedBy user id of user liking tuit
 */
 const LikeSchema = new mongoose.Schema<Like>({
     tuit: {type: Schema.Types.ObjectId, ref: "TuitModel"},

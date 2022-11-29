@@ -1,15 +1,14 @@
 /**
- * @file Implements mongoose schema to CRUD
- * documents in the message collection
+ * @file CRUD operations using
+ * mongoose model in the message collection
  */
 import mongoose, {Schema} from "mongoose";
 import Message from "../models/Message";
 /**
-* @typedef Message Represents Message
-* @property {String} message message
-* @property {ObjectId[]} to user id  sending message
-* @property {ObjectId[]} from user id receiving message
-* @property {Date} sentOn Date
+* @typedef Message is the message being sent
+* @property {String} message content of the messsage
+* @property {ObjectId[]} to user id sending the message
+* @property {ObjectId[]} from user id getting message
 */
 const MessageSchema = new mongoose.Schema<Message>({
     message: String,

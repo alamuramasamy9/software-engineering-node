@@ -1,6 +1,6 @@
 /**
- * @file Implements mongoose model to CRUD
- * documents in the message collection
+ * @file CRUD operations using
+ * mongoose model in the message collection
  */
  import mongoose from "mongoose";
  import MessageSchema from "./MessageSchema";

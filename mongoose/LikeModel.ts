@@ -1,7 +1,8 @@
 /**
- * @file Implements mongoose model to CRUD
- * documents in the likes collection
+ * @file CRUD operations using
+ * mongoose model in the like collection
  */
+
  import mongoose from "mongoose";
  import LikeSchema from "./LikeSchema";
  const LikeModel = mongoose.model("LikeModel", LikeSchema);

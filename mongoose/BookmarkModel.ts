@@ -1,6 +1,6 @@
 /**
- * @file Implements mongoose model to CRUD
- * documents in the bookmark collection
+ * @file CRUD operations using
+ * mongoose model in the bookmark collection
  */
  import mongoose from "mongoose";
  import BookmarkSchema from "./BookmarkSchema";
