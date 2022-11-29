@@ -10,6 +10,7 @@ import Follow from "../models/Follow";
 * @property {ObjectId[]} userFollowed is the user id of being followed
 * @property {ObjectId[]} userFollowing is the user id of user following
 */
+
 const FollowSchema = new mongoose.Schema<Follow>({
     userFollowed: {type: Schema.Types.ObjectId, ref: "UserModel"},
     userFollowing: {type: Schema.Types.ObjectId, ref: "UserModel"},

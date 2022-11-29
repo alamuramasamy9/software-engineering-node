@@ -9,14 +9,10 @@
   * @class MessageController Implements RESTful Web service API for Message resource.
   * Defines the following HTTP endpoints:
   * <ul>
-  *     <li>GET /api/users/:uid/messages/sent to retrieve all the message sent by user
-  *     </li>
-  *     <li>GET /api/users/:uid/messages/received to retrieve all message sent to user
-  *     </li>
-  *     <li>POST /api/users/:from/messages/:to to record that a user sent message to another user
-  *     </li>
-  *     <li>DELETE /api/users/:from/messages/:id to record that a user
-  *     unsent a message</li>
+  *     <li>GET /api/users/:uid/messages/sent to retrieve all the message sent by user </li>
+  *     <li>GET /api/users/:uid/messages/received to retrieve all message sent to user </li>
+  *     <li>POST /api/users/:from/messages/:to to record that a user sent message to another user </li>
+  *     <li>DELETE /api/users/:from/messages/:id to record that a user unsent a message</li>
   * </ul>
   * @property {MessageDao} messageDao Singleton DAO implementing message CRUD operations
   * @property {MessageController} MessageController Singleton controller implementing
@@ -74,6 +70,7 @@
       * body formatted as JSON containing the new message that was inserted in the
       * database
       */
+
       userSendsMessage = (req: Request, res: Response) =>
          MessageController.messageDao.userSendsMessage(req.params.from, req.params.to, req.body)
              .then(message => res.json(message));

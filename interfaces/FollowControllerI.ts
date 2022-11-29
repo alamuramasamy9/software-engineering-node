@@ -1,6 +1,6 @@
 import {Request, Response} from "express";
 /**
- * @file Implements FollowController interface
+ * @file FollowController interface  with CRUD operations
  */
 export default interface FollowControllerI {
     findAllUsersThatFollowUser (req: Request, res: Response): void;

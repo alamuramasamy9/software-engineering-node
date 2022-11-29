@@ -1,7 +1,7 @@
 import Like from "../models/Likes";
 
 /**
- * @file Declares API for Likes related data access object methods
+ * @file likes related data access object methods
  */
 export default interface LikeDaoI {
     findAllUsersThatLikedTuit (tid: string): Promise<Like[]>;

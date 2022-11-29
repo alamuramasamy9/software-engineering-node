@@ -9,14 +9,10 @@
   * @class FollowController Implements RESTful Web service API for follow resource.
   * Defines the following HTTP endpoints:
   * <ul>
-  *     <li>GET /users/:uid/following to retrieve all the users followed by a user
-  *     </li>
-  *     <li>GET /users/:uid/followed to retrieve all users that following them
-  *     </li>
-  *     <li>POST/user/:uid/follow/:uidFollowing to record that a user follows another user
-  *     </li>
-  *     <li>DELETE/user/:uid/unfollow/:uidFollowing to record that a user
-  *     no londer follows a user</li>
+  *     <li>GET /users/:uid/following to retrieve all the users followed by a user </li>
+  *     <li>GET /users/:uid/followed to retrieve all users that following them  </li>
+  *     <li>POST/user/:uid/follow/:uidFollowing to record that a user follows another user </li>
+  *     <li>DELETE/user/:uid/unfollow/:uidFollowing to record that a user no londer follows a user</li>
   * </ul>
   * @property {FollowDao} followDao Singleton DAO implementing follow CRUD operations
   * @property {FollowController} FollowController Singleton controller implementing

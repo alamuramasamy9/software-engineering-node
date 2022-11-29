@@ -1,14 +1,14 @@
 /**
- * @file Implements DAO managing data storage of bookmark. Uses mongoose BookmarkModel
- * to integrate with MongoDB
+ * @file data access object implementation managing data bookmark.
+ * bookmark model is used to pass data
  */
 import BookmarkDaoI from "../interfaces/BookmarkDaoI";
 import BookmarkModel from "../mongoose/BookmarkModel";
 import Bookmark from "../models/Bookmark";
 /**
-  * @class BookmarkDao Implements Data Access Object managing data storage
-  * of Bookmark
-  * @property {BookmarkDao} bookmarkDao Private single instance of BookmarkDao
+ *
+  * @class BookmarkDao data access object implementation managing bookmark data.
+  * @property bookmarkDao instance
   */
 export default class BookmarkDao implements BookmarkDaoI {
     private static bookmarkDao: BookmarkDao | null = null;
@@ -20,23 +20,29 @@ export default class BookmarkDao implements BookmarkDaoI {
     }
     private constructor() {}
     /**
-      * Retrieves all tuits that are bookmarked by the user
-      * @param {String} uid uid representing the user
+      * all tuits bookmarked by a user is retrieved
+      * @param  uid user id representing the user
       */
     findAllTuitsBookmarkedByUser = async (uid: string): Promise<Bookmark[]> =>
         BookmarkModel.find({bookmarkedBy: uid})
             .populate("bookmarkedTuit")
             .exec();
+
     /**
-      * @param {String} uid  user id
-       * @param {String} tid  tuit id
+     * bookmark a tuit
+      * @param uid  user id
+       * @param tid  tuit id
       */
+
     userBookmarksTuit = async (uid: string, tid: string): Promise<any> =>
         BookmarkModel.create({bookmarkedTuit: tid, bookmarkedBy: uid});
+
     /**
-      * @param {String} uid user id
-      * @param {String} uid tuit id that needs to deleted
+     * unbookmark a tuit that was bookmarked
+      * @param uid user id
+      * @param uid tuit id of particular tuit tfor deletion
       */
+
     userUnbookmarksTuit = async (uid: string, tid: string): Promise<any> =>
         BookmarkModel.deleteOne({bookmarkedTuit: tid, bookmarkedBy: uid});
 }

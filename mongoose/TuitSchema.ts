@@ -10,6 +10,7 @@ import Tuit from "../models/Tuit";
 * @property {ObjectId[]} tuit is the tuit id of tuit
 * @property {ObjectId[]} postedBy is the user id of user posting tuit
 */
+
 const TuitSchema = new mongoose.Schema<Tuit>({
     tuit: {type: String, required: true},
     postedBy: {type: Schema.Types.ObjectId, ref: "UserModel"},

@@ -1,16 +1,14 @@
 /**
- * @file Declares Message data type representing relationship between 
- * users, as in user sends message to other user
+ * @file message model with content and both user ids
  */
  import User from "./User";
- 
- /**
-  * @typedef Message Represents message relationship between users, as in user sends message to other user.
-  * @property {String} Message message to be sent
-  * @property {User} to the user where message needs to be delivered
-  * @property {User} from the user who sends message
-  * @property {Date} sentOn date of sending the message
-  */
+
+/**
+ * @typedef Message is the message being sent
+ * @property  message content of the messsage
+ * @property  to user id sending the message
+ * @property  from user id getting message
+ */
  
  export default interface Bookmark {
      message: String,

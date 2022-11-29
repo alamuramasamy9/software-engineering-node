@@ -1,5 +1,5 @@
 /**
- * @file Implements UserController interface
+ * @file UserController interface with CRUD operations
  */
 import { Request, Response } from "express";
 export default interface UserController {

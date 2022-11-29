@@ -1,15 +1,16 @@
 /**
- * @file Implements DAO managing data storage of follow. Uses mongoose FollowModel
- * to integrate with MongoDB
+ * @file data access object implementation managing data of follows.
+ * follow model is used to pass data
  */
+
 import FollowDaoI from "../interfaces/FollowDaoI";
 import FollowModel from "../mongoose/FollowModel";
 import Follow from "../models/Follow";
 /**
-  * @class FollowDao Implements Data Access Object managing data storage
-  * of follow
-  * @property {FollowDao} followDao Private single instance of UserDao
+  * @class FollowDao  data access object implementation managing follow data.
+  * @property followDao instance
   */
+
 export default class FollowDao implements FollowDaoI {
     private static followDao: FollowDao | null = null;
     public static getInstance = (): FollowDao => {
@@ -20,27 +21,32 @@ export default class FollowDao implements FollowDaoI {
     }
     private constructor() {}
     /**
-      * Retrieves all users that follow a particular user
-      * @param {String} uid uid representing user
+      * all users followed by one user fetched
+      * @param  uid user id
     **/
     findAllUsersThatFollowUser = async (uid: string): Promise<Follow[]> =>
         FollowModel
             .find({userFollowing: uid})
             .populate("userFollowed")
             .exec();
+
     /**
-      * Retrieves all users followed by user from the database
-      * @param {String} uid user liked the tuits
+      * all users folloing one user fetched
+      * @param uid user id
     */
+
     findAllUsersFollowedByUser = async (uid: string): Promise<Follow[]> =>
     FollowModel
             .find({userFollowed: uid})
             .populate("userFollowing")
             .exec();
+
     /**
-      * @param {Request} uid user id
-      * @param {Response} uidFollowing user id following
+     * unfollow a user that was followed
+      * @param  uid user id who follows
+      * @param  uidFollowing user who is being followed
     */
+
     userFollowsUser = async (uid: string, uidFollowing: string): Promise<any> =>
         FollowModel.create({userFollowed: uid, userFollowing: uidFollowing});
     userUnfollowsUser = async (uid: string, uidFollowing: string): Promise<any> =>

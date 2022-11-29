@@ -1,16 +1,16 @@
 /**
- * @file Implements DAO managing data storage of likes. Uses mongoose LikeModel
- * to integrate with MongoDB
+ * @file data access object implementation managing data of likes.
+ * like model is used to pass data
  */
+
 import LikeDaoI from "../interfaces/LikeDaoI";
 import LikeModel from "../mongoose/LikeModel";
 import Like from "../models/Likes";
 /**
- * Implements Data Access Object managing data storage
- * of Likes
- * @implements {LikeDaoI} LikeDaoI
- * @property {LikeDao} likeDao Private single instance of LikeDao
+ * @class LikeDao  data access object implementation managing like data.
+ * @property likeDao instance
  */
+
 export default class LikeDao implements LikeDaoI {
     private static likeDao: LikeDao | null = null;
     public static getInstance = (): LikeDao => {
@@ -20,34 +20,44 @@ export default class LikeDao implements LikeDaoI {
         return LikeDao.likeDao;
     }
     private constructor() {}
+
     /**
-      * Retrieves all users that liked a tuit from the database
-      * @param {String} tid tid representing the liked tuit
+      * all users that liked a particular tuit
+      * @param tid tuit id
       */
+
     findAllUsersThatLikedTuit = async (tid: string): Promise<Like[]> =>
         LikeModel
             .find({tuit: tid})
             .populate("likedBy")
             .exec();
+
     /**
-      * Retrieves all tuits liked by a user from the database
-      * @param {String} uid uid representing the user liked the tuits
+      * all tuits liked by a user
+      * @param uid user id
       */
+
     findAllTuitsLikedByUser = async (uid: string): Promise<Like[]> =>
         LikeModel
             .find({likedBy: uid})
             .populate("tuit")
             .exec();
+
     /**
-      * @param {String} uid user id string
-      * @param {String} tid tuit id string
+      * like a tuit
+      * @param uid user id
+      * @param tid tuit id
       */
+
     userLikesTuit = async (uid: string, tid: string): Promise<any> =>
         LikeModel.create({tuit: tid, likedBy: uid});
+
     /**
-      * @param {String} uid user id string
-      * @param {String} tid tuit id string
+      * inlike a tuit that was liked
+      * @param  uid user id
+      * @param  tid tuit id
     */
+
     userUnlikesTuit = async (uid: string, tid: string): Promise<any> =>
         LikeModel.deleteOne({tuit: tid, likedBy: uid});
 }

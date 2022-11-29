@@ -1,6 +1,6 @@
 import {Request, Response} from "express";
 /**
- * @file Implements LikeController interface
+ * @file LikeController interface with CRUD operations
  */
 export default interface LikeControllerI {
     findAllUsersThatLikedTuit (req: Request, res: Response): void;

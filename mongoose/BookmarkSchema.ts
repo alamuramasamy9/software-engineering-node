@@ -7,8 +7,8 @@ import mongoose, {Schema} from "mongoose";
 import Bookmark from "../models/Bookmark";
 /**
 * @typedef Bookmark is the bookmark being placed
-* @property {ObjectId[]} bookmarkedTuit id of tuit is passed
-* @property {ObjectId[]} bookmarkedBy id of user is passed
+* @property {ObjectId[]} bookmarkedTuit id of tuit being passed
+* @property {ObjectId[]} bookmarkedBy id of user being passed
 */
 
 const BookmarkSchema = new mongoose.Schema<Bookmark>({

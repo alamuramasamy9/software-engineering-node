@@ -1,5 +1,5 @@
 /**
- * @file Implements MaritalStatus interface
+ * @file marital status enum
  */
 enum MaritalStatus {
     Married = 'MARRIED',

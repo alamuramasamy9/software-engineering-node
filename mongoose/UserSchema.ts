@@ -10,7 +10,7 @@ import User from "../models/User";
 * @property {String} username username of the user being passed
 * @property {String} password password of the user being passed
 * @property {String} firstName first name of the user being passed
-* @property {String} lastName last name of the user b
+* @property {String} lastName last name of the user being passed
 * @property {String} email email of the user being passed
 * @property {String} profilePhoto profile photo of the user being passed
 * @property {String} headerImage header image of the user being passed
@@ -21,6 +21,7 @@ import User from "../models/User";
 * @property {Number} location latitude and longitude of the user being passed
 * @property {Number} salary salary of the user being passed
 */
+
 const UserSchema = new mongoose.Schema<User>({
     username: {type: String, required: true, default: `testusername${Date.now()}`},
     password: {type: String, required: true, default: `testpassword${Date.now()}`},

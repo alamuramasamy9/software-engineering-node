@@ -1,7 +1,7 @@
 import Message from "../models/Message";
 
 /**
- * @file Declares API for Message related data access object methods
+ * @file message related data access object methods
  */
 export default interface MessageDaoI {
     findAllMessagesSentByUser (from: string): Promise<Message[]>;

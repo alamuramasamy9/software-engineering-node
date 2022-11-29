@@ -1,7 +1,7 @@
 import Follow from "../models/Follow";
 
 /**
- * @file Declares API for Follow related data access object methods
+ * @file follow related data access object methods
  */
 export default interface FollowDaoI {
     findAllUsersThatFollowUser (uid: string): Promise<Follow[]>;

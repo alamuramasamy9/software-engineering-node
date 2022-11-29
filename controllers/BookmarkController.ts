@@ -1,6 +1,7 @@
 /**
  * @file Controller RESTful Web service API for Bookmark resource
  */
+
  import {Express, Request, Response} from "express";
  import BookmarkDao from "../daos/BookmarkDao";
  import BookmarkControllerI from "../interfaces/BookmarkControllerI";

@@ -1,6 +1,6 @@
 import {Request, Response} from "express";
 /**
- * @file Implements BookmarkController interface
+ * @file BookmarkController interface with CRUD operations
  */
 export default interface BookmarkController {
     findAllTuitsBookmarkedByUser (req: Request, res: Response): void;
