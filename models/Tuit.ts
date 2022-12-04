@@ -2,6 +2,7 @@
  * @file tuit model with tuit and user id
  */
  import User from "./User";
+import Stats from "./Stats";
 
 /**
  * @typedef Tuit is the tweet
@@ -11,6 +12,11 @@
 
 export default interface Tuit {
     tuit: string,
-    postedBy?: User,
+    postedBy: User,
     postedOn?: Date,
+    image?: String,
+    youtube?: String,
+    avatarLogo?: String,
+    imageOverlay?: String,
+    stats: Stats
 };

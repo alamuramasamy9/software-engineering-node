@@ -75,4 +75,10 @@ import TuitModel from "../mongoose/TuitModel";
 
      deleteTuit = async (uid: string): Promise<any> =>
          TuitModel.deleteOne({_id: uid});
+
+    deleteTuitByContent = async (content: string): Promise<any> =>
+        TuitModel.deleteMany({tuit: content});
+
+    deleteAllTuit = async (): Promise<any> =>
+        TuitModel.deleteMany({});
  }
