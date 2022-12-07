@@ -28,7 +28,7 @@ var cors = require('cors')
 const session = require("express-session");
 
 // connect to database
-const connectionString = 'mongodb+srv://alamu:ramasamy@cluster0.ckorscg.mongodb.net/tuiter?retryWrites=true&w=majority`;
+const connectionString = 'mongodb+srv://alamu:ramasamy@cluster0.ckorscg.mongodb.net/tuiter?retryWrites=true&w=majority';
 mongoose.connect(connectionString);
 
 mongoose.connection.on("error", function(error) {
